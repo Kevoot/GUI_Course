@@ -9,9 +9,6 @@ var inputCallback = function() {
     }
     else {
         // Lock it in a loop and wait for the button to be pressed.
-        while(!window.inputReadyFlag) {
-            alert("Awaiting input");
-        }
     }
 }
 
