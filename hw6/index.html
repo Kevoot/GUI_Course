@@ -1,0 +1,127 @@
+<!--
+	File: https://kevoot.github.io/GUI_Course/hw6/index.html
+	Assignment 6: Creating an Interactive Table
+	Name: Kevin Holmes
+	Email: kevin_holmes@student.uml.edu
+	Status: CS Undergrad
+	Last Modified: 11/12/2018 6:25PM
+    Description: This page gives the user input elements to enter in
+        values for the start and end of two number ranges, x and y.
+        x and y are used to dynamically (programmatically) generate
+        a multiplication table styled with css. It has error handling
+        in the form of a validation function checkValues(). If the
+        input has and errors such as range too large, or the range 
+        values being flip-flopped, a popup modal will appear which
+        will describe and where to find the errors.
+
+    This file: The html for layout. Some elements such as the table
+        and the modal text do not yet have any children. These
+        elements have their children generated programmatically
+        during runtime.
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Multiplication Tables</title>
+
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js> </script> <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+    <!-- Begin page content -->
+    <div class="content-body">
+        <h2 class="mt-5 header">Multiplication Tables</h2>
+        <hr>
+        <p>
+            <h5>
+                <!-- Let user know maximum ranges -->
+                Maximum range between start and end is 20
+            </h5>
+        </p>
+        <br>
+        <!-- Row start and end range input -->
+        <div class="col-md-12">
+            <form class="form form-inline" id="leftForm">
+                <div class="form-group col-md-3">
+                    <label for="firstStart">Row start number: </label>
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="text" id="firstStart" size="10" name="firstStart" maxlength="2" width="10" value=""
+                        class="form-control">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="firstEnd">Row end number: </label>
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="text" id="firstEnd" size="10" name="firstEnd" maxlength="2" value="" class="form-control">
+                </div>
+            </form>
+        </div>
+        <br>
+        <!-- Column start and end range input -->
+        <div class="col-md-12">
+            <form class="form form-inline" id="rightForm">
+                <div class="form-group col-md-3">
+                    <label for="secondStart">Column start number: </label>
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="text" id="secondStart" size="10" name="secondStart" maxlength="2" value="" class="form-control">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="secondEnd">Column end number: </label>
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="text" id="secondEnd" size="10" name="secondEnd" maxlength="2" value="" class="form-control">
+                </div>
+            </form>
+            <button type="text" id="submitButton">Generate Table</button>
+        </div>
+        <br>
+        <!-- Left a div here in case I want to adjust it programmatically in the future -->
+        <div class="table-responsive">
+            <table id="multTable" class="table table-dark table-hover">
+                <!-- To be filled in programmatically in js-->
+            </table>
+        </div>
+    </div>
+    <!-- Modal popup for displaying error messages. Hidden until errors are found on input -->
+    <div class="modal" tabindex="-1" role="dialog" id="errorModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Errors found</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="modalText">
+                        <!-- Error strings will be populated here on detection -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

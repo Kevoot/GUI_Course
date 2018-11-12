@@ -1,0 +1,102 @@
+/**
+ *	File: https://kevoot.github.io/GUI_Course/hw6/css/main.css
+ *	Assignment 6: Creating an Interactive Table
+ *	Name: Kevin Holmes
+ *	Email: kevin_holmes@student.uml.edu
+ * 	Status: CS Undergrad
+ *	Last Modified: 11/12/2018 6:25PM
+ *  Description: This page gives the user input elements to enter in
+ *      values for the start and end of two number ranges, x and y.
+ *      x and y are used to dynamically (programmatically) generate
+ *      a multiplication table styled with css. It has error handling
+ *      in the form of a validation function checkValues(). If the
+ *      input has and errors such as range too large, or the range 
+ *      values being flip-flopped, a popup modal will appear which
+ *      will describe and where to find the errors.
+ *
+ *  This file: This file contains all css for the page. It styles
+ *      the column headers in an alternating pattern for even 
+ *      elements. The oddrow class is applied during the table
+ *      generation.
+ */
+
+/*
+ * Set the main page and modal colors and center all text
+ */
+body, .modal-content {
+    background-color: rgb(69, 70, 75);
+    color: rgb(240, 240, 240);
+    text-align: center;
+}
+
+/*
+ * Center all paragraphs to center of page
+ */
+p {
+    margin: 0 auto;
+}
+
+/*
+ * Submit button was resting a bit too close to the input fields and table
+ */
+button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/*
+ * Each column and row should alternate between light and dark
+ * Rows will have class applied programmatically
+ */
+th:nth-child(even), .oddrow th {
+    background-color: rgb(116, 116, 116);
+}
+
+/*
+ * When hovering over an entry, make it visually distinct
+ * Also change mouse cursor so we can see what we're hovering over
+ */
+td:hover { 
+    cursor: none;
+    color: rgb(116, 116, 116); 
+    background-color: rgb(240, 240, 240);
+}
+
+/*
+ * Center and adjust all the header text
+ */
+h5, .header {
+    margin: 0 auto;
+    width: 50%;
+}
+
+/*
+ * Content of page has static size and centered in page
+ */
+.content-body {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: rgb(55, 55, 58);
+    height: 100vh;
+}
+
+/*
+ * Line up the input boxes
+ */
+.form-group {
+    display: block;
+}
+
+/*
+ * input elements should float right in respective box
+ */
+input {
+    float: right;
+}
+
+/*
+ * label for each input should appear to left of the input
+ */
+label {
+    float: left;
+}
