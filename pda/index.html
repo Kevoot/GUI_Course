@@ -10,7 +10,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/vis.css" rel="stylesheet" type="text/css" />
     <link href="css/main.css" rel="stylesheet" type="text/css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 </head>
 
 <body>
@@ -39,9 +39,10 @@
 
     <!-- Begin page content -->
     <h2 class="mt-5">Construct a PDA from the example calculator language (CL)</h2>
-    <div class="graphmain col-md-12">
+    <div class="contentbody graphmain col-md-12">
 
         <div id="instructionList" class="col-md-4 graphmain">
+            <h3>Syntax:</h3>
             <p>
                 read input: <br />
                 <code>read (var)</code>
@@ -91,11 +92,11 @@
             </div>
         </div>
         <div id="NodeInput" class="col-md-4 graphmain">
-            <div>CL code:</div>
+            <h3>CL Code</h3>
             <textarea class="codetextarea" rows="25" cols="30" id="inputString"></textarea>
         </div>
         <div id='jsOutput' class="col-md-3 graphmain">
-            <div>JS code output:</div>
+            <h3>JS code output:</h3>
             <textarea class="outputtextarea" rows="25" cols="20" id="outputString"></textarea>
         </div>
         <div>

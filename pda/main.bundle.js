@@ -60861,6 +60861,8 @@ $(document).on('click', '#pdaSubmitButton', () => {
     input = input.replace(/(\r\n\t|\n|\r\t)/gm, ' ');
     let root = main(input);
     displayData(root);
+    // Scroll down to generated tree
+    $('#mynetwork').get(0).scrollIntoView();
     let conv = templates_1.convertProgram(root);
     let v = new Function(conv);
     document.getElementById('outputString').value = conv;
