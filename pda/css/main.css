@@ -1,0 +1,17 @@
+.graphmain {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.codecollapse {
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.codetextarea {
+    width: 100%;
+}
+
+.outputtextarea {
+    width: 80%;
+}
