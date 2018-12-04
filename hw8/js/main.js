@@ -4,18 +4,22 @@
  *	Name: Kevin Holmes
  *	Email: kevin_holmes@student.uml.edu
  * 	Status: CS Undergrad
- *	Last Modified: 12/03/2018 7:21PM
+ *	Last Modified: 12/04/2018 6:41PM
  *  Description: This page is a continuation of homework 7. The main modifications 
  *  were done to the validation initialization and the creation of the sliders/tabs. 
  *  generateTable() was modified to pull the values from the sliders instead of
  *  text inputs. focusout methods were used to update the text boxes when the sliders
- *  are changed
+ *  are changed.
  * 
  *  This file: The file contains the javascript functions for generating the table
  *  & intializing the validators/sliders
  */
 
+// Current counter of tabs
 let numTabs = 1;
+
+// If we're using multidelete mode or not
+let deleteMode = false;
 
 /**
  * If the fields successfully pass validation, this is called to create the table
@@ -173,8 +177,12 @@ $(document).on("click", "#submitButton", () => {
 
     let titleString = r1 + "-" + r2 + "x" + c1 + "-" + c2;
 
+    // Create a new tab with a close button available
     $("div#tabs ul").append(
-        "<li><a href='#tab" + numTabs + "'>" + titleString + "</a></li>"
+        "<li id='tab" + numTabs + "li'><a class='datatab' href='#tab" + numTabs + "'>" + titleString + 
+            "</a><a href='#tab" + numTabs + 
+            "close'><i class='fas fa-times-circle datatab-close'></i></a>" +
+            "</li>"
     );
 
     $("div#tabs").append(
@@ -183,8 +191,6 @@ $(document).on("click", "#submitButton", () => {
 
     // Force refresh of the tabs
     $("div#tabs").tabs("refresh");
-
-    let newDiv = $("#tab" + numTabs);
 
     let tableParentDiv = document.createElement("div");
     tableParentDiv.setAttribute("id", 'tableParent' + numTabs);
@@ -197,7 +203,8 @@ $(document).on("click", "#submitButton", () => {
     tableParentDiv.append(tableDiv);
 
     // To ensure the theme matched properly, force the class and other
-    // miscellaneous attributes onto the created element
+    // miscellaneous attributes onto the created element to ensure
+    // functionality with jQuery ui
     let tabDiv = document.createElement("div");
     tabDiv.setAttribute("id", 'tab' + numTabs);
     tabDiv.setAttribute("aria-labelledby", "ui-id-" + (numTabs + 1));
@@ -209,8 +216,67 @@ $(document).on("click", "#submitButton", () => {
 
     document.getElementById("tab" + numTabs).append(tabDiv);
 
+    $('#btnDiv')[0].style.display = "block";
+
+    // Generate the table into the target div
     generateTable('table' + numTabs);
+});
+
+// On click, closes the tab and resets UI to input tab
+$(document).on('click', '.datatab-close', (evt) => {
+    numTabs--;
+    let removalTab = evt.currentTarget.parentElement.parentElement;
+    $(removalTab).remove();
+    // Force refresh of the tabs after deletion
+    $("div#tabs").tabs("refresh");
+    if (numTabs <= 1) {
+        $('#btnDiv')[0].style.display = "none";
+    }
+});
+
+// Toggles between allowing the user to delete multiple tabs at 
+// once and resetting the UI to the previous state.
+$(document).on('click', '#deleteButton', () => {
+    if (deleteMode) {
+        // If we're in delete mode, get all checkboxes, and delete the
+        // parent tab if the checkbox is checked
+        let checkboxes = $('.form-check-lg');
+        for (let i = 0; i < checkboxes.length; i++) {
+            if(checkboxes[i].checked) {
+                $(checkboxes[i].parentElement).remove();
+            }
+        }
+        $('#deleteButton').attr('class', 'btn btn-primary btn-sm');
+        deleteMode = false;
+        finishTabDeletion();
+    } 
+    // Otherwise reset the UI
+    else {
+        let items = $('div#tabs ul li');
+        // We don't want the user to delete the input tab, so start at 1
+        for (let i = 1; i < items.length; i++) {
+            $(items[i]).prepend(
+                '<input type="checkbox" class="form-check-input form-check-lg"  id="check' + 
+                numTabs + '"></div>'
+            )
+        }
+        $('#deleteButton').attr('class', 'btn btn-success btn-sm');
+        $('#cancelButton')[0].style.display = "";
+        deleteMode = true;
+    }
+});
+
+$(document).on('click', '#cancelButton', () => {
+    finishTabDeletion();
 })
+
+// Hide the cancel button and remove all checkboxes
+function finishTabDeletion() {
+    $('#cancelButton')[0].style.display = "none";
+    $('.form-check-lg').remove();
+}
+
+
 
 /**
  * Validation rules and messages

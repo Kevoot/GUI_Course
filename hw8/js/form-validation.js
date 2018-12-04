@@ -4,7 +4,7 @@
  *	Name: Kevin Holmes
  *	Email: kevin_holmes@student.uml.edu
  * 	Status: CS Undergrad
- *	Last Modified: 12/03/2018 7:21PM
+ *  Last Modified: 12/04/2018 6:41PM
  *  Description: This file was modified to use sliders instead of the two
  *  text input sections as used in homework 6 & 7. The validations ensure
  *  that the distance between the two is no larger than 20 and the start

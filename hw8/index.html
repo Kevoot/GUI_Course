@@ -4,7 +4,7 @@
 	Name: Kevin Holmes
 	Email: kevin_holmes@student.uml.edu
 	Status: CS Undergrad
-  	Last Modified: 12/03/2018 7:21PM
+  	Last Modified: 12/04/2018 6:41PM
     Description: This is a continuation of homework 6 and 7. This page
         has been updated to include sliders which have two-way binding with 
         the associated text-fields. Whenever the submit button is pressed,
@@ -29,13 +29,17 @@
 
     <!-- jquery validation plugin -->
     <script src=https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js></script>
-    <script src=https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/additional-methods.js> </script> <!-- jQuery
-        UI Plugin -->
-    <!-- These aren't pulled from a CDN, custom theme specific for jquery-ui -->
+    <script src=https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/additional-methods.js> </script> 
+    
+    <!-- jQueryUI Plugin -->
+    <!-- These aren't pulled from a CDN, custom theme specific for jquery-ui (modified by me)-->
     <script src="./3rdParty/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
     <link rel="stylesheet" href="./3rdParty/jquery-ui-1.12.1.custom/jquery-ui.css">
     <link rel="stylesheet" href="./3rdParty/jquery-ui-1.12.1.custom/jquery-ui.structure.css">
     <link rel="stylesheet" href="./3rdParty/jquery-ui-1.12.1.custom/jquery-ui.theme.css">
+
+    <!-- font awesome icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
     <!-- Bootstrap -->
     <!-- Optional theme -->
@@ -52,6 +56,7 @@
 <body>
     <!-- Begin page content -->
     <div class="content-body">
+
         <!-- add tabs sections for hiding/showing tabs programmatically -->
         <div id="tabs">
             <ul id="tabList">
@@ -97,6 +102,10 @@
                         <input id="submitButton" type="submit" class="btn btn-primary">
                     </form>
                 </div>
+                <div id="btnDiv" class="btndiv" style="display: none;">
+                        <button type="button" id="deleteButton" class="btn btn-primary btn-sm">Delete multiple saved tabs</button>
+                        <button type="button" id="cancelButton" class="btn btn-danger btn-sm" style="display: none;">Cancel</button>
+                    </div>
                 <!-- Left a div here in case I want to adjust it programmatically in the future -->
                 <div class="table-responsive" id="tableParent">
                     <table id="multTable" class="table table-dark table-hover">

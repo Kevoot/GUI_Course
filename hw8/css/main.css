@@ -4,9 +4,11 @@
  *	Name: Kevin Holmes
  *	Email: kevin_holmes@student.uml.edu
  * 	Status: CS Undergrad
- *	Last Modified: 11/29/2018 8:59PM
+ *	Last Modified: 12/04/2018 6:41PM
  *  Description: This is mostly the same as homework 7, with the addition
- *  of a few style rules for error messages on the input forms.
+ *  of a few style rules for error messages on the input forms and slider stylings
+ *  NOTE: Most of the changes are containted within 3rdParty/jquery-ui. This is included
+ *  locally as opposed to a CDN due to some local modifications
  *
  *  This file: This file contains all css for the page. It styles
  *      the column headers in an alternating pattern for even 
