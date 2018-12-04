@@ -74,6 +74,7 @@ h5, .header {
  */
 .header-container {
     background-color: #3c4d61;
+    color: #ffffff;
     margin: 0 auto;
     width: 100%;
     margin-bottom: 10px;
@@ -86,6 +87,7 @@ h5, .header {
     max-width: 75%;
     margin: 0 auto;
     background-color: #303d4d;
+    color: #ffffff;
     border-color: #2f3a47;
     border-style: solid;
     border-width: 3px;

@@ -1,23 +1,17 @@
 <!--
 	File: https://kevoot.github.io/GUI_Course/hw6/index.html
-	Assignment 6: Creating an Interactive Table
+	Assignment 8: jQuery UI Plugin
 	Name: Kevin Holmes
 	Email: kevin_holmes@student.uml.edu
 	Status: CS Undergrad
-	Last Modified: 11/12/2018 6:25PM
-    Description: This page gives the user input elements to enter in
-        values for the start and end of two number ranges, x and y.
-        x and y are used to dynamically (programmatically) generate
-        a multiplication table styled with css. It has error handling
-        in the form of a validation function checkValues(). If the
-        input has and errors such as range too large, or the range 
-        values being flip-flopped, a popup modal will appear which
-        will describe and where to find the errors.
+  	Last Modified: 12/03/2018 7:21PM
+    Description: This is a continuation of homework 6 and 7. This page
+        has been updated to include sliders which have two-way binding with 
+        the associated text-fields. Whenever the submit button is pressed,
+        a new tab is created with the current table's contents.
 
-    This file: The html for layout. Some elements such as the table
-        and the modal text do not yet have any children. These
-        elements have their children generated programmatically
-        during runtime.
+    This file: The html for layout. These elements have their children 
+        generated programmatically during runtime.
 -->
 
 <!DOCTYPE html>
@@ -58,73 +52,61 @@
 <body>
     <!-- Begin page content -->
     <div class="content-body">
-        <div class="header-container">
-            <h2 class="header">Multiplication Tables</h2>
-            <hr>
-            <p>
-                <h5>
-                    <!-- Let user know maximum ranges -->
-                    Maximum range between start and end is 20
-                </h5>
-            </p>
-            <br>
-        </div>
-        <!-- Row start and end range input -->
-        <div class="col-md-12 input-container">
-            <form class="form form-inline" id="inputForm" name="inputForm">
-                <br>
-                <div class="form-group col-md-12">
-                    <div class="col-md-12">
-                        <label for="rowRange">Row Range:</label>
-                        <input type="text" id="rowRange" name="rowRange" style="font-weight:bold;" class="form-control required range-input">
-                    </div>
-                    <div class="col-md-12" style="float: right;">
-                        <div id="rowRangeSlider" class="range-slider"></div>
-                    </div>
+        <!-- add tabs sections for hiding/showing tabs programmatically -->
+        <div id="tabs">
+            <ul id="tabList">
+                <li><a href="#inputTab">Input Tab</a></li>
+            </ul>
+            <div id="inputTab">
+                <div class="header-container">
+                    <h2 class="header">Multiplication Tables</h2>
+                    <hr>
+                    <p>
+                        <h5>
+                            <!-- Let user know maximum ranges -->
+                            Maximum range between start and end is 20
+                        </h5>
+                    </p>
+                    <br>
                 </div>
-                <br>
-                <div class="form-group col-md-12">
-                    <div class="col-md-12">
-                        <label for="columnRange">Column Range:</label>
-                        <input type="text" id="columnRange" name="columnRange" style="font-weight:bold;" class="form-control required range-input">
-                    </div>
-                    <div class="col-md-12" style="float: right;">
-                        <div id="columnRangeSlider" class="range-slider"></div>
-                    </div>
+                <!-- Row start and end range input -->
+                <div class="col-md-12 input-container">
+                    <form class="form form-inline" id="inputForm" name="inputForm">
+                        <br>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-12">
+                                <label for="rowRange">Row Range:</label>
+                                <input type="text" id="rowRange" name="rowRange" style="font-weight:bold;" class="form-control required range-input">
+                            </div>
+                            <div class="col-md-12" style="float: right;">
+                                <div id="rowRangeSlider" class="range-slider"></div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-12">
+                                <label for="columnRange">Column Range:</label>
+                                <input type="text" id="columnRange" name="columnRange" style="font-weight:bold;" class="form-control required range-input">
+                            </div>
+                            <div class="col-md-12" style="float: right;">
+                                <div id="columnRangeSlider" class="range-slider"></div>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="errorContainer"></div>
+                        <input id="submitButton" type="submit" class="btn btn-primary">
+                    </form>
                 </div>
-                <br>
-                <div id="errorContainer"></div>
-                <input type="submit" class="btn btn-primary">
-            </form>
-        </div>
-        <!-- Left a div here in case I want to adjust it programmatically in the future -->
-        <div class="table-responsive">
-            <table id="multTable" class="table table-dark table-hover">
-                <!-- To be filled in programmatically in js-->
-            </table>
-        </div>
-    </div>
-    <!-- Modal popup for displaying error messages. Hidden until errors are found on input -->
-    <div class="modal" tabindex="-1" role="dialog" id="errorModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Errors found</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div id="modalText">
-                        <!-- Error strings will be populated here on detection -->
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                <!-- Left a div here in case I want to adjust it programmatically in the future -->
+                <div class="table-responsive" id="tableParent">
+                    <table id="multTable" class="table table-dark table-hover">
+                        <!-- To be filled in programmatically in js-->
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+
     <script src="./js/main.js"></script>
     <script src="./js/form-validation.js"></script>
 </body>

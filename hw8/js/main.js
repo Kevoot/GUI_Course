@@ -4,22 +4,26 @@
  *	Name: Kevin Holmes
  *	Email: kevin_holmes@student.uml.edu
  * 	Status: CS Undergrad
- *	Last Modified: 11/29/2018 8:59PM
+ *	Last Modified: 12/03/2018 7:21PM
  *  Description: This page is a continuation of homework 7. The main modifications 
- *  were done to the validation initialization and the creation of the sliders. 
+ *  were done to the validation initialization and the creation of the sliders/tabs. 
  *  generateTable() was modified to pull the values from the sliders instead of
- *  text inputs.
+ *  text inputs. focusout methods were used to update the text boxes when the sliders
+ *  are changed
  * 
  *  This file: The file contains the javascript functions for generating the table
  *  & intializing the validators/sliders
  */
 
+let numTabs = 1;
+
 /**
  * If the fields successfully pass validation, this is called to create the table
+ * This was updated for homework 8 to accept an id as a parameter and replace that 
+ * element with the generated table
  */
-function generateTable() {
-    // Clear the current table contents
-    resetTable();
+function generateTable(targetId) {
+    let element = document.getElementById(targetId);
 
     // Get all input data
     const r1 = parseInt($("#rowRangeSlider").slider("values", 0));
@@ -29,7 +33,7 @@ function generateTable() {
 
     // Create the initial header row
     const tableHeadEl = document.createElement("thead");
-    multTable.appendChild(tableHeadEl);
+    element.appendChild(tableHeadEl);
     const tableHeadRowEl = document.createElement("tr");
     tableHeadEl.appendChild(tableHeadRowEl);
 
@@ -50,7 +54,7 @@ function generateTable() {
     // Create the body which each row will be inserted into
     const tableBodyEl = document.createElement("tbody");
 
-    multTable.appendChild(tableBodyEl);
+    element.appendChild(tableBodyEl);
 
     for (let row = r1; row <= r2; row++) {
         // Create the row heads
@@ -76,6 +80,15 @@ function generateTable() {
     }
 }
 
+// This is so that the input tab table is always visible and updating
+function updateTable() {
+    // Clear the current table contents
+    resetTable();
+
+    let resultTable = generateTable("multTable");
+}
+
+// Clears the div out entirely.
 function resetTable() {
     const multTable = document.getElementById("multTable");
     multTable.innerHTML = "";
@@ -94,14 +107,13 @@ $(function () {
         slide: function (event, ui) {
             $("#rowRange").val(ui.values[0] + " - " + ui.values[1]);
             if ($('#inputForm').validate().element('#rowRange')) {
-                generateTable();
+                updateTable();
             }
             else {
                 resetTable();
             }
         }
     });
-
     $("#rowRange").val($("#rowRangeSlider").slider("values", 0) +
         " - " + $("#rowRangeSlider").slider("values", 1));
 
@@ -113,7 +125,7 @@ $(function () {
         slide: function (event, ui) {
             $("#columnRange").val(ui.values[0] + " - " + ui.values[1]);
             if ($('#inputForm').validate().element('#columnRange')) {
-                generateTable();
+                updateTable();
             }
             else {
                 resetTable();
@@ -143,8 +155,62 @@ $(function () {
         }
     });
 
-
+    // Initialize the tabs
+    $("#tabs").tabs();
 });
+
+/**
+ * Generate a new tab and use the generateTable function to fill the body
+ * of the new div
+ */
+$(document).on("click", "#submitButton", () => {
+    numTabs++;
+
+    const r1 = parseInt($("#rowRangeSlider").slider("values", 0));
+    const r2 = parseInt($("#rowRangeSlider").slider("values", 1));
+    const c1 = parseInt($("#columnRangeSlider").slider("values", 0));
+    const c2 = parseInt($("#columnRangeSlider").slider("values", 1));
+
+    let titleString = r1 + "-" + r2 + "x" + c1 + "-" + c2;
+
+    $("div#tabs ul").append(
+        "<li><a href='#tab" + numTabs + "'>" + titleString + "</a></li>"
+    );
+
+    $("div#tabs").append(
+        "<div id='tab" + numTabs + "'>" + titleString + "</div>"
+    );
+
+    // Force refresh of the tabs
+    $("div#tabs").tabs("refresh");
+
+    let newDiv = $("#tab" + numTabs);
+
+    let tableParentDiv = document.createElement("div");
+    tableParentDiv.setAttribute("id", 'tableParent' + numTabs);
+    tableParentDiv.setAttribute("class", "table-responsive");
+
+    let tableDiv = document.createElement("div");
+    tableDiv.setAttribute("id", 'table' + numTabs);
+    tableDiv.setAttribute("class", 'table table-dark table-hover');
+
+    tableParentDiv.append(tableDiv);
+
+    // To ensure the theme matched properly, force the class and other
+    // miscellaneous attributes onto the created element
+    let tabDiv = document.createElement("div");
+    tabDiv.setAttribute("id", 'tab' + numTabs);
+    tabDiv.setAttribute("aria-labelledby", "ui-id-" + (numTabs + 1));
+    tabDiv.setAttribute('role', "tabpanel");
+    tabDiv.setAttribute('class', "ui-tabs-panel ui-corner-bottom ui-widget-content");
+    tabDiv.setAttribute('aria-hidden', "false");
+    tabDiv.append(tableParentDiv);
+
+
+    document.getElementById("tab" + numTabs).append(tabDiv);
+
+    generateTable('table' + numTabs);
+})
 
 /**
  * Validation rules and messages
@@ -171,6 +237,6 @@ $("#inputForm").validate({
         rowRange: "Error in Row values: Start value must be less than or equal to End value, and the difference between the two <= 20",
         columnRange: "Error in Column values: Start value must be less than or equal to End value, and the difference between the two <= 20",
     },
-    submitHandler: generateTable,
+    submitHandler: updateTable,
     errorLabelContainer: '#errorContainer'
 });

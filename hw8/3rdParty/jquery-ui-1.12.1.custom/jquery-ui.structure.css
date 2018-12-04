@@ -873,7 +873,7 @@ button.ui-button::-moz-focus-inner {
 	display: block;
 	border-width: 0;
 	padding: 1em 1.4em;
-	background: none;
+	background-color: #303d4d;
 }
 .ui-tooltip {
 	padding: 8px;
