@@ -1,0 +1,159 @@
+#content {
+  width: 1000px;
+  margin: auto;
+}
+
+.box {
+    height: 35px;
+    width: 35px;
+    /*background-image: url("../img/Scrabble_Tile_Blank.jpg");*/
+    background-image: none;
+    background-size: cover;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    cursor: pointer;
+  }
+  
+  .held {
+    border: solid 1px black;
+  }
+  
+  .holder {
+    height: 38px;
+    width: 38px;
+    margin: 5px;
+    border: solid 2px black;
+    background-color: white;
+    display: inline-block;
+  }
+  
+  .hovered {
+    border: dotted 5px black;
+  }
+  
+  .invisible {
+    display: none;
+  }
+  
+  #container {
+    top: 10px;
+    position: relative;
+  }
+
+  #playerpieces, #button-container {
+      top: 10px;
+      position: relative;
+  }
+
+  .letter-tile {
+    background-image: none;
+  }
+
+  .a-tile {
+    background-image: url("../img/Scrabble_Tile_A.jpg");
+  }
+
+  .b-tile {
+    background-image: url("../img/Scrabble_Tile_B.jpg");
+  }
+
+  .c-tile {
+    background-image: url("../img/Scrabble_Tile_C.jpg");
+  }
+
+  .d-tile {
+    background-image: url("../img/Scrabble_Tile_D.jpg");
+  }
+
+  .e-tile {
+    background-image: url("../img/Scrabble_Tile_E.jpg");
+  }
+
+  .f-tile {
+    background-image: url("../img/Scrabble_Tile_F.jpg");
+  }
+
+  .g-tile {
+    background-image: url("../img/Scrabble_Tile_G.jpg");
+  }
+
+  .h-tile {
+    background-image: url("../img/Scrabble_Tile_H.jpg");
+  }
+
+  .i-tile {
+    background-image: url("../img/Scrabble_Tile_I.jpg");
+  }
+
+  .j-tile {
+    background-image: url("../img/Scrabble_Tile_J.jpg");
+  }
+
+  .k-tile {
+    background-image: url("../img/Scrabble_Tile_K.jpg");
+  }
+
+  .l-tile {
+    background-image: url("../img/Scrabble_Tile_L.jpg");
+  }
+
+  .m-tile {
+    background-image: url("../img/Scrabble_Tile_M.jpg");
+  }
+
+  .n-tile {
+    background-image: url("../img/Scrabble_Tile_N.jpg");
+  }
+
+  .o-tile {
+    background-image: url("../img/Scrabble_Tile_O.jpg");
+  }
+
+  .p-tile {
+    background-image: url("../img/Scrabble_Tile_P.jpg");
+  }
+
+  .q-tile {
+    background-image: url("../img/Scrabble_Tile_Q.jpg");
+  }
+
+  .r-tile {
+    background-image: url("../img/Scrabble_Tile_R.jpg");
+  }
+
+  .s-tile {
+    background-image: url("../img/Scrabble_Tile_S.jpg");
+  }
+
+  .t-tile {
+    background-image: url("../img/Scrabble_Tile_T.jpg");
+  }
+
+  .u-tile {
+    background-image: url("../img/Scrabble_Tile_U.jpg");
+  }
+
+  .v-tile {
+    background-image: url("../img/Scrabble_Tile_V.jpg");
+  }
+
+  .w-tile {
+    background-image: url("../img/Scrabble_Tile_W.jpg");
+  }
+
+  .x-tile {
+    background-image: url("../img/Scrabble_Tile_X.jpg");
+  }
+
+  .y-tile {
+    background-image: url("../img/Scrabble_Tile_Y.jpg");
+  }
+
+  .z-tile {
+    background-image: url("../img/Scrabble_Tile_Z.jpg");
+  }
+
+  .blank-tile {
+    background-image: url("../img/Scrabble_Tile_BLANK.jpg");
+  }
