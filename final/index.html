@@ -1,23 +1,16 @@
 <!--
-	File: https://kevoot.github.io/GUI_Course/hw6/index.html
-	Assignment 6: Creating an Interactive Table
-	Name: Kevin Holmes
-	Email: kevin_holmes@student.uml.edu
-	Status: CS Undergrad
-	Last Modified: 11/12/2018 6:25PM
-    Description: This page gives the user input elements to enter in
-        values for the start and end of two number ranges, x and y.
-        x and y are used to dynamically (programmatically) generate
-        a multiplication table styled with css. It has error handling
-        in the form of a validation function checkValues(). If the
-        input has and errors such as range too large, or the range 
-        values being flip-flopped, a popup modal will appear which
-        will describe and where to find the errors.
 
-    This file: The html for layout. Some elements such as the table
-        and the modal text do not yet have any children. These
-        elements have their children generated programmatically
-        during runtime.
+    File: https://kevoot.github.io/GUI_Course/final/index.html
+    Assignment 9: Implementing a Bit of Scrabble with Drag-and-Drop
+    	Name: Kevin Holmes
+    	Email: kevin_holmes@student.uml.edu
+    	Status: CS Undergrad
+    	Last Modified: 12/19/2018 3:34PM
+    Description: This file is fairly simple in terms of layout as 
+                 many of the elements are generated or handled
+                 programmatically in js. Really all that's needed
+                 here is a few containers to apply CSS to.
+
 -->
 
 <!DOCTYPE html>
@@ -44,47 +37,60 @@
 </head>
 
 <body>
-    <div id="content">
-    <div id="gameboard">
-        <!--Populated programmatically-->
-    </div>
-    <br >
+    <div id="content" class="col-md-12">
+        <div id="scorecontainer" class="col-md-12">
+            <h3 id="score">Current Score: 0</h3>
+        </div>
+        <div id="gameboard" class="col-md-12">
+            <!--Populated programmatically-->
+        </div>
+        <br>
+        <!-- Hidden initially, shown if a gap is found in user words -->
+        <div id="errorcontainer">
+            <h3 id="errortext"></h3>
+        </div>
 
-    <!--Player tiles-->
-    <div id="playerpieces">
-        <div id="playerHolder0" class="holder">
-            <div class="box" draggable="true"></div>
+        <div id="input" class="col-md-12">
+            <!--Player tile rack and pieces-->
+            <div id="playerpieces" class="col-md-6">
+                <div id="playerHolder0" class="holder">
+                    <div class="box" draggable="true"></div>
+                </div>
+                <div id="playerHolder1" class="holder">
+                    <div class="box" draggable="true"></div>
+                </div>
+                <div id="playerHolder2" class="holder">
+                    <div class="box" draggable="true"></div>
+                </div>
+                <div id="playerHolder3" class="holder">
+                    <div class="box" draggable="true"></div>
+                </div>
+                <div id="playerHolder4" class="holder">
+                    <div class="box" draggable="true"></div>
+                </div>
+                <div id="playerHolder5" class="holder">
+                    <div class="box" draggable="true"></div>
+                </div>
+                <div id="playerHolder6" class="holder">
+                    <div class="box" draggable="true"></div>
+                </div>
+            </div>
+            <div id="buttoncontainer" class="col-md-6">
+                <button type="button" class="btn btn-primary" id="submit">Submit Word</button>
+                <button type="button" class="btn btn-primary" id="reroll">Replace All Tiles</button>
+                <button type="button" class="btn btn-warning" id="restart">Restart Game</button>
+            </div>
+            <!-- Keeps a running log of plays by user-->
+            <div class="form-group brown-border">
+                <label for="historytext" id="historytextlabel">History:</label>
+                <textarea class="form-control" id="historytext" readonly="true" rows="12"></textarea>
+            </div>
         </div>
-        <div id="playerHolder1" class="holder">
-            <div class="box" draggable="true"></div>
-        </div>
-        <div id="playerHolder2" class="holder">
-            <div class="box" draggable="true"></div>
-        </div>
-        <div id="playerHolder3" class="holder">
-            <div class="box" draggable="true"></div>
-        </div>
-        <div id="playerHolder4" class="holder">
-            <div class="box" draggable="true"></div>
-        </div>
-        <div id="playerHolder5" class="holder">
-            <div class="box" draggable="true"></div>
-        </div>
-        <div id="playerHolder6" class="holder">
-            <div class="box" draggable="true"></div>
-        </div>
-    </div>
-    <div>
-        <h3 id="score">Current Score: 0</h3>
-    </div>
-    <div id="button-container">
-        <button type="button" class="btn btn-primary" id="submit">Submit Word</button>
-        <button type="button" class="btn btn-primary" id="reroll">Replace Tiles</button>
-        <button type="button" class="btn btn-warning" id="reset">Restart Game</button>
-    </div>
     </div>
 
+    <!-- Data structure holding enumeration of tiles and correlated values-->
     <script src="./js/tileConfig.js"></script>
+
     <script src="./js/main.js"></script>
 </body>
 

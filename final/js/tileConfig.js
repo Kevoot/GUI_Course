@@ -1,3 +1,17 @@
+/**
+ *	File: https://kevoot.github.io/GUI_Course/final/js/tileConfig.js
+ *  Assignment 9: Implementing a Bit of Scrabble with Drag-and-Drop
+ *	Name: Kevin Holmes
+ *	Email: kevin_holmes@student.uml.edu
+ * 	Status: CS Undergrad
+ *	Last Modified: 12/19/2018 3:34PM
+ *  Description: Instead of using JSON, I chose instead to just initialize
+ *               an object which contains a key/object pair. The key being
+ *               the letter of the tile, and the object representing the value
+ *               of that type of tile as well as the total number of that 
+ *               specific tile available
+ */
+
 let tileConfig = {
     A: { "val": 1, "count": 9 },
     B: { "val": 3, "count": 2 },
