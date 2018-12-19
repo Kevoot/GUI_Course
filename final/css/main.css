@@ -19,13 +19,21 @@
     border: solid 1px black;
   }
   
-  .holder {
+  .holder, .double-holder {
     height: 38px;
     width: 38px;
     margin: 5px;
     border: solid 2px black;
-    background-color: white;
+    background-size: cover;
     display: inline-block;
+  }
+
+  .holder {
+    background-image: url("../img/back_blank.jpg");
+  }
+
+  .double-holder {
+    background-image: url("../img/back_double_word.jpg");
   }
   
   .hovered {
